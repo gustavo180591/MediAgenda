@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3007:3000"
+      - "5562:5555"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5442/mediagenda
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+      - /app/node_modules
+  db:
+    image: postgres:16
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=mediagenda
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5442:5432"
+volumes:
+  pgdata:

@@ -1,0 +1,2 @@
+DATABASE_URL="postgresql://postgres:postgres@localhost:5442/mediagenda"
+GITHUB_TOKEN=your_github_token_here
